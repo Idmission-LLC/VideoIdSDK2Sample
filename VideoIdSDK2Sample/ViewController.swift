@@ -1,0 +1,50 @@
+//
+//  ViewController.swift
+//  VideoIdSDK2Sample
+//
+//  Created by Amol Deshmukh on 25/02/25.
+//
+
+import UIKit
+import IDentityVideoIdSDK
+
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    //Token Generation TextField
+    @IBOutlet var authUrl_Textfield : UITextField!
+    @IBOutlet var loginID_Textfield : UITextField!
+    @IBOutlet var password_Textfield : UITextField!
+    @IBOutlet var merchantID_Textfield : UITextField!
+    @IBOutlet var clientID_Textfield : UITextField!
+    @IBOutlet var clientSecret_Textfield : UITextField!
+    
+    //SDK Initialization TextField
+    @IBOutlet var apiBaseURL_Textfield : UITextField!
+    @IBOutlet var token_Textfield : UITextField!
+    
+    @IBOutlet var activityIndicator : UIActivityIndicatorView!
+    @IBOutlet var sdkVersion_Label : UILabel!
+    
+    var states: [InitializationStage: InitializationState] = [:]
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        sdkVersion_Label.text = "SDK Version : " + IDentitySDK.version
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        token_Textfield.text = ""
+    }
+    
+    //Initialize SDK
+    @IBAction func generateAccessTokenTapped(_ sender:Any) {
+        generateAccessToken()
+    }
+
+    //Initialize SDK
+    @IBAction func initializeSDKTapped(_ sender:Any) {
+        SDKInitializationAPICall()
+    }
+    
+}
